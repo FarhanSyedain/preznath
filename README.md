@@ -11,9 +11,10 @@ Hack for Social Cause · VBYLD 2027 · Digital Safety & Cyber Fraud Awareness.
 | FastAPI pipeline | `apps/api` | Clean Architecture + HF models + SSE stage stream |
 | React web demo | `apps/web` | Vite + TypeScript MVVM, live pipeline UI |
 | Android app | `apps/android` | Offline-first Kotlin Compose (heuristics + TF-IDF / optional ONNX) |
-| Pitch deck | `deck` | 7 HTML slides → PNG + `Preznath-Yimberzol.pdf` |
 
 Product name is **Preznath**. Internal Python package folder remains `satark` (import path); all user-facing titles say Preznath.
+
+Feature audit: see [`MISSING.md`](MISSING.md). Common commands: `make help`. Pitch-deck assets are **not** in this repository.
 
 ## Architecture
 
@@ -142,15 +143,6 @@ cd apps/android
 
 Needs Android SDK (see `local.properties`). Unit tests cover three golden messages without a device. Toggle **Cloud models** in the UI only when the API is reachable (`10.0.2.2:8000` on emulator); failures fall back to offline.
 
-## Deck
-
-```bash
-cd deck
-npm install
-# after web UI works: drop a real screenshot at screenshots/app.png
-npm run render   # regenerates slide-*.png + Preznath-Yimberzol.pdf
-```
-
 ## Demo script (3 minutes)
 
 1. Start API (`:8000`) and wait until `/api/health` says `"status":"ok"`.
@@ -160,7 +152,7 @@ npm run render   # regenerates slide-*.png + Preznath-Yimberzol.pdf
 5. Click **Hindi electricity scam** → **FRAUD 75**. Show the translated text and the 404 ms translation stage.
 6. Click **Friend paying for dinner** → **SAFE 5**. Same models, no false alarm; `priya.s@okicici` validates as ICICI (Google Pay).
 7. Click **Pending cashback** → **SUSPICIOUS 62** — the ambiguous middle, where the advice is "confirm through a channel you already trust".
-8. Optional: open the Android APK and run the same examples offline; open `deck/` for the pitch.
+8. Optional: open the Android APK and run the same examples offline.
 
 ### Measured verdicts (this machine, Apple Silicon, CPU only)
 

@@ -1,21 +1,27 @@
 # Preznath — Team Yimberzol
 # Common hackathon demo targets. Requires: uv, pnpm, Android SDK (for android-*).
 
-.PHONY: help api-install api-test api-run api-warm web-install web-dev web-test web-build android-test android-apk test
+.PHONY: help setup warm dev api-install api-test api-run api-warm web-install web-dev web-test web-build android-test android-apk test
 
 help:
 	@echo "Preznath targets:"
-	@echo "  make api-install   # uv venv + editable install (Python 3.12)"
-	@echo "  make api-warm      # download HF models into cache"
-	@echo "  make api-run       # uvicorn on :8000"
-	@echo "  make api-test      # pytest"
-	@echo "  make web-install  # pnpm install"
-	@echo "  make web-dev      # Vite on :5173 (proxies /api → :8000)"
-	@echo "  make web-test     # vitest"
-	@echo "  make web-build    # production build"
-	@echo "  make android-test # JVM unit tests"
-	@echo "  make android-apk  # debug APK"
+	@echo "  make setup        # api-install + web-install + warm models"
+	@echo "  make warm         # download HF models into cache"
+	@echo "  make dev          # API :8000 + web :5173 (Ctrl-C stops both)"
+	@echo "  make api-run      # uvicorn only"
 	@echo "  make test         # api + web + android unit tests"
+	@echo "  make android-apk  # debug APK"
+
+setup: api-install web-install warm
+
+warm: api-warm
+
+dev:
+	@echo "Starting API (:8000) and web (:5173). Ctrl-C stops both."
+	@( cd apps/api && . .venv/bin/activate && uvicorn satark.main:app --host 127.0.0.1 --port 8000 ) & \
+	API_PID=$$!; \
+	( cd apps/web && pnpm dev ); \
+	kill $$API_PID 2>/dev/null || true
 
 api-install:
 	cd apps/api && uv python install 3.12 && uv venv --python 3.12 && . .venv/bin/activate && uv pip install -e ".[dev]"
