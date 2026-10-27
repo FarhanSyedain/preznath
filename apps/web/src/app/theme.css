@@ -1,0 +1,115 @@
+:root {
+  /* Pantone red palette */
+  --red-185: #e4002b; /* Pantone 185 C — primary */
+  --red-186: #c8102e; /* Pantone 186 C — pressed / dark */
+  --red-1795: #d22630; /* Pantone 1795 C — FRAUD */
+  --red-032: #ef3340; /* Pantone Red 032 C — highlights */
+  --warm-red: #f9423a; /* Pantone Warm Red C — SUSPICIOUS */
+
+  /* Neutrals */
+  --paper: #f6f4f0;
+  --paper-2: #efece6;
+  --ink: #121212;
+  --ink-2: #4a4a4a;
+  --ink-3: #8a8782;
+  --rule: #d9d4cc;
+  --safe: #1f1f1f;
+
+  --font-sans: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  --font-mono: "SF Mono", ui-monospace, Menlo, monospace;
+
+  --gutter: 32px;
+  --col-gap: 48px;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html,
+body,
+#root {
+  margin: 0;
+  padding: 0;
+  min-height: 100%;
+}
+
+body {
+  background: var(--paper);
+  color: var(--ink);
+  font-family: var(--font-sans);
+  font-size: 15px;
+  line-height: 1.45;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+a {
+  color: var(--red-186);
+  text-decoration: none;
+  border-bottom: 1px solid var(--red-186);
+}
+
+button,
+input,
+textarea {
+  font: inherit;
+  color: inherit;
+}
+
+::selection {
+  background: var(--red-185);
+  color: var(--paper);
+}
+
+/* Shared primitives --------------------------------------------------- */
+
+.label {
+  font-family: var(--font-sans);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--ink-2);
+}
+
+.mono {
+  font-family: var(--font-mono);
+  font-variant-numeric: tabular-nums;
+}
+
+.rule {
+  border: 0;
+  border-top: 1px solid var(--rule);
+  margin: 0;
+}
+
+.rule--ink {
+  border-top-color: var(--ink);
+}
+
+.rule--red {
+  border-top-color: var(--red-185);
+}
+
+.section {
+  padding: 20px 0 28px;
+  border-top: 1px solid var(--ink);
+}
+
+.section__head {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 16px;
+  margin-bottom: 16px;
+}
+
+.section__index {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  color: var(--ink-3);
+  margin-right: 10px;
+}

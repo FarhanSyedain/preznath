@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Preznath</string>
+    <string name="tagline">Paste a payment message. Know if it is a scam before you pay.</string>
+</resources>

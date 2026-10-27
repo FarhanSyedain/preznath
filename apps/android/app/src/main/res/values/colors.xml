@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="pantone_red">#E4002B</color>
+    <color name="paper">#F6F4F0</color>
+    <color name="ink">#121212</color>
+    <color name="ic_launcher_background">#E4002B</color>
+</resources>

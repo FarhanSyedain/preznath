@@ -1,0 +1,14 @@
+{
+  "name": "satark",
+  "private": true,
+  "version": "0.1.0",
+  "description": "Satark — multi-stage ML screening for UPI / payment fraud messages.",
+  "scripts": {
+    "setup": "make setup",
+    "dev": "make dev",
+    "api": "make api",
+    "web": "make web",
+    "test": "make test",
+    "warm": "make warm"
+  }
+}
