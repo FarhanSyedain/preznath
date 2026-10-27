@@ -55,13 +55,14 @@ private val EXAMPLES = listOf(
     ),
     DemoExample(
         title = "Hindi bijli",
-        expected = "FRAUD/SUSP",
-        text = "Bijli bill update nahi hua hai, aaj raat connection kaat diya jayega. Turant officer se sampark karein.",
+        expected = "SUSPICIOUS",
+        text = "आपका बिजली कनेक्शन आज रात 9:30 बजे काट दिया जाएगा। बिल अपडेट करने के लिए तुरंत कॉल करें 9123456789",
     ),
     DemoExample(
         title = "Dinner",
         expected = "SAFE",
-        text = "Hey, sending you 500 for dinner, check your GPay.",
+        text = "Hey, sending you 500 for dinner, check your GPay",
+        upiId = "priya.s@okicici",
     ),
 )
 

@@ -183,3 +183,15 @@ Zero-shot intent is the slowest stage (~400 ms); every other model answers in un
 - Stage exception → that stage marks `failed`; fusion continues on remaining signals.
 - Android without ONNX → TF-IDF similarity; spam/phishing/intent stay heuristic.
 - Cloud toggle on Android → on network error, silently uses offline analyzer.
+
+## Android offline app (detail)
+
+Team Yimberzol · Preznath on-device screener lives in `apps/android/`. Full notes: [`apps/android/README.md`](apps/android/README.md).
+
+- **Offline by default:** normalize/language → entities → spam/phishing/intent heuristics → TF-IDF (or ONNX MiniLM INT8 when the ARM64 asset loads) → rules → risk fusion. No runtime model downloads.
+- **Bundled:** `scam_corpus.json`, `psp_handles.json`, `models/model_qint8_arm64.onnx` (~22 MB) + `vocab.txt`.
+- **Share intent:** WhatsApp/SMS **Share → Preznath** (`ACTION_SEND` / `text/plain`).
+- **Cloud (off):** emulator `POST http://10.0.2.2:8000/api/analyze`; failures fall back offline.
+- **Build:** `cd apps/android && ./gradlew :app:assembleDebug :app:testDebugUnitTest` → `app/build/outputs/apk/debug/app-debug.apk`.
+- **Golden unit tests:** KYC+bit.ly → FRAUD; Devanagari bijli → FRAUD/SUSPICIOUS; dinner transfer → SAFE.
+- **SMS BroadcastReceiver:** not shipped (permission weight); documented as next step — local notification only, no exfiltration.
